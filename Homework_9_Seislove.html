@@ -600,10 +600,12 @@ head(baby_names) %&gt;% kable()</code></pre>
 </tbody>
 </table>
 <p><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
-<p>#Filtering and Sampling</p>
 </div>
+</div>
+<div id="filtering-and-sampling" class="section level1">
+<h1>Filtering and Sampling</h1>
 <div id="filter-by-name-and-sex" class="section level3">
-<h3>Filter by name and sex</h3>
+<h3>Filter by Name and Sex</h3>
 <pre class="r"><code>baby_names &lt;- baby_names %&gt;% filter(name == &#39;Ben&#39; &amp; sex == &#39;M&#39;)
 
 head(baby_names) %&gt;% kable()</code></pre>
@@ -679,7 +681,7 @@ head(baby_names) %&gt;% kable()</code></pre>
 <p><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
 </div>
 <div id="pseudorandom-sample-of-5-rows" class="section level3">
-<h3>Pseudorandom sample of 5 rows</h3>
+<h3>Pseudorandom Sample of 5 Rows</h3>
 <pre class="r"><code>set.seed(10)
 
 baby_sample &lt;- baby_names %&gt;% slice_sample(n = 5) %&gt;% arrange(year)
@@ -748,6 +750,28 @@ baby_sample %&gt;% kable()</code></pre>
 <p><a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
 </div>
 </div>
+<div id="formatting-string" class="section level1">
+<h1>Formatting String</h1>
+<div id="flattening" class="section level3">
+<h3>Flattening</h3>
+<pre class="r"><code>baby_strings &lt;- baby_sample %&gt;% 
+  pull(sentence)
+
+flat_baby &lt;- str_flatten(baby_strings, &quot;, &quot;, last = &quot;, and &quot;)
+
+str_view(flat_baby)</code></pre>
+<pre><code>## [1] │ 0.04% in 1951, 0.04% in 1953, 0.03% in 1967, 0.02% in 1991, and 0.02% in 2016</code></pre>
+<p><a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
+</div>
+<div id="filling-format-template" class="section level3">
+<h3>Filling Format Template</h3>
+<pre class="r"><code>format_baby &lt;- str_glue(&quot;Out of all male names, the name Ben represented {flat_baby}.&quot;)
+
+cat(format_baby)</code></pre>
+<p>Out of all male names, the name Ben represented 0.04% in 1951, 0.04% in 1953, 0.03% in 1967, 0.02% in 1991, and 0.02% in 2016.</p>
+<p><a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
+</div>
+</div>
 <div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
@@ -755,6 +779,8 @@ baby_sample %&gt;% kable()</code></pre>
 <li id="fn2"><p>Problem 2 Complete<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 <li id="fn3"><p>Problem 3 Complete<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
 <li id="fn4"><p>Problem 4 Complete<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>Problem 5 Complete<a href="#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>Problem 6 Complete<a href="#fnref6" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 

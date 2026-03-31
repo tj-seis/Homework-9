@@ -8,7 +8,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 library(tidyverse)
 library(mosaic)
 library(janitor)
@@ -44,9 +44,9 @@ head(baby_names) %>% kable()
 
 ^[Problem 2 Complete]
 
-#Filtering and Sampling
+# Filtering and Sampling
 
-### Filter by name and sex
+### Filter by Name and Sex
 
 ```{r}
 baby_names <- baby_names %>% filter(name == 'Ben' & sex == 'M')
@@ -56,7 +56,7 @@ head(baby_names) %>% kable()
 
 ^[Problem 3 Complete]
 
-### Pseudorandom sample of 5 rows
+### Pseudorandom Sample of 5 Rows
 
 ```{r}
 set.seed(10)
@@ -68,3 +68,27 @@ baby_sample %>% kable()
 
 ^[Problem 4 Complete]
 
+# Formatting String
+
+### Flattening
+
+```{r}
+baby_strings <- baby_sample %>% 
+  pull(sentence)
+
+flat_baby <- str_flatten(baby_strings, ", ", last = ", and ")
+
+str_view(flat_baby)
+```
+
+^[Problem 5 Complete]
+
+### Filling Format Template
+
+```{r, results='asis'}
+format_baby <- str_glue("Out of all male names, the name Ben represented {flat_baby}.")
+
+cat(format_baby)
+```
+
+^[Problem 6 Complete]
