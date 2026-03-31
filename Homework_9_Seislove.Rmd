@@ -44,9 +44,27 @@ head(baby_names) %>% kable()
 
 ^[Problem 2 Complete]
 
-#Filtering
+#Filtering and Sampling
+
+### Filter by name and sex
 
 ```{r}
-baby_names
+baby_names <- baby_names %>% filter(name == 'Ben' & sex == 'M')
+
+head(baby_names) %>% kable()
 ```
+
+^[Problem 3 Complete]
+
+### Pseudorandom sample of 5 rows
+
+```{r}
+set.seed(10)
+
+baby_sample <- baby_names %>% slice_sample(n = 5) %>% arrange(year)
+
+baby_sample %>% kable()
+```
+
+^[Problem 4 Complete]
 

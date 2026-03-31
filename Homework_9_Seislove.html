@@ -600,22 +600,152 @@ head(baby_names) %&gt;% kable()</code></pre>
 </tbody>
 </table>
 <p><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
-<p>#Filtering</p>
-<pre class="r"><code>baby_names</code></pre>
-<pre><code>## # A tibble: 1,924,665 × 7
-##     year sex   name          n   prop percent sentence     
-##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;glue&gt;       
-##  1  1880 F     Mary       7065 0.0724    7.24 7.24% in 1880
-##  2  1880 F     Anna       2604 0.0267    2.67 2.67% in 1880
-##  3  1880 F     Emma       2003 0.0205    2.05 2.05% in 1880
-##  4  1880 F     Elizabeth  1939 0.0199    1.99 1.99% in 1880
-##  5  1880 F     Minnie     1746 0.0179    1.79 1.79% in 1880
-##  6  1880 F     Margaret   1578 0.0162    1.62 1.62% in 1880
-##  7  1880 F     Ida        1472 0.0151    1.51 1.51% in 1880
-##  8  1880 F     Alice      1414 0.0145    1.45 1.45% in 1880
-##  9  1880 F     Bertha     1320 0.0135    1.35 1.35% in 1880
-## 10  1880 F     Sarah      1288 0.0132    1.32 1.32% in 1880
-## # ℹ 1,924,655 more rows</code></pre>
+<p>#Filtering and Sampling</p>
+</div>
+<div id="filter-by-name-and-sex" class="section level3">
+<h3>Filter by name and sex</h3>
+<pre class="r"><code>baby_names &lt;- baby_names %&gt;% filter(name == &#39;Ben&#39; &amp; sex == &#39;M&#39;)
+
+head(baby_names) %&gt;% kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">year</th>
+<th align="left">sex</th>
+<th align="left">name</th>
+<th align="right">n</th>
+<th align="right">prop</th>
+<th align="right">percent</th>
+<th align="left">sentence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1880</td>
+<td align="left">M</td>
+<td align="left">Ben</td>
+<td align="right">305</td>
+<td align="right">0.0025760</td>
+<td align="right">0.26</td>
+<td align="left">0.26% in 1880</td>
+</tr>
+<tr class="even">
+<td align="right">1881</td>
+<td align="left">M</td>
+<td align="left">Ben</td>
+<td align="right">289</td>
+<td align="right">0.0026690</td>
+<td align="right">0.27</td>
+<td align="left">0.27% in 1881</td>
+</tr>
+<tr class="odd">
+<td align="right">1882</td>
+<td align="left">M</td>
+<td align="left">Ben</td>
+<td align="right">334</td>
+<td align="right">0.0027370</td>
+<td align="right">0.27</td>
+<td align="left">0.27% in 1882</td>
+</tr>
+<tr class="even">
+<td align="right">1883</td>
+<td align="left">M</td>
+<td align="left">Ben</td>
+<td align="right">306</td>
+<td align="right">0.0027206</td>
+<td align="right">0.27</td>
+<td align="left">0.27% in 1883</td>
+</tr>
+<tr class="odd">
+<td align="right">1884</td>
+<td align="left">M</td>
+<td align="left">Ben</td>
+<td align="right">367</td>
+<td align="right">0.0029901</td>
+<td align="right">0.30</td>
+<td align="left">0.3% in 1884</td>
+</tr>
+<tr class="even">
+<td align="right">1885</td>
+<td align="left">M</td>
+<td align="left">Ben</td>
+<td align="right">292</td>
+<td align="right">0.0025184</td>
+<td align="right">0.25</td>
+<td align="left">0.25% in 1885</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+</div>
+<div id="pseudorandom-sample-of-5-rows" class="section level3">
+<h3>Pseudorandom sample of 5 rows</h3>
+<pre class="r"><code>set.seed(10)
+
+baby_sample &lt;- baby_names %&gt;% slice_sample(n = 5) %&gt;% arrange(year)
+
+baby_sample %&gt;% kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">year</th>
+<th align="left">sex</th>
+<th align="left">name</th>
+<th align="right">n</th>
+<th align="right">prop</th>
+<th align="right">percent</th>
+<th align="left">sentence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1951</td>
+<td align="left">M</td>
+<td align="left">Ben</td>
+<td align="right">685</td>
+<td align="right">0.0003583</td>
+<td align="right">0.04</td>
+<td align="left">0.04% in 1951</td>
+</tr>
+<tr class="even">
+<td align="right">1953</td>
+<td align="left">M</td>
+<td align="left">Ben</td>
+<td align="right">745</td>
+<td align="right">0.0003723</td>
+<td align="right">0.04</td>
+<td align="left">0.04% in 1953</td>
+</tr>
+<tr class="odd">
+<td align="right">1967</td>
+<td align="left">M</td>
+<td align="left">Ben</td>
+<td align="right">554</td>
+<td align="right">0.0003113</td>
+<td align="right">0.03</td>
+<td align="left">0.03% in 1967</td>
+</tr>
+<tr class="even">
+<td align="right">1991</td>
+<td align="left">M</td>
+<td align="left">Ben</td>
+<td align="right">351</td>
+<td align="right">0.0001656</td>
+<td align="right">0.02</td>
+<td align="left">0.02% in 1991</td>
+</tr>
+<tr class="odd">
+<td align="right">2016</td>
+<td align="left">M</td>
+<td align="left">Ben</td>
+<td align="right">350</td>
+<td align="right">0.0001735</td>
+<td align="right">0.02</td>
+<td align="left">0.02% in 2016</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
 </div>
 </div>
 <div class="footnotes footnotes-end-of-document">
@@ -623,6 +753,8 @@ head(baby_names) %&gt;% kable()</code></pre>
 <ol>
 <li id="fn1"><p>Problem 1 Complete<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 <li id="fn2"><p>Problem 2 Complete<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Problem 3 Complete<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Problem 4 Complete<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
