@@ -21,3 +21,32 @@ library(knitr)
 babynames <- babynames::babynames
 ```
 
+# New Columns
+
+### Percent
+
+```{r}
+baby_names <- babynames %>% mutate(percent = round(prop * 100, 2))
+
+head(baby_names) %>% kable()
+```
+
+^[Problem 1 Complete]
+
+### Sentence
+
+```{r}
+baby_names <- baby_names %>% 
+  mutate(sentence = str_glue("{percent}% in {year}"))
+
+head(baby_names) %>% kable()
+```
+
+^[Problem 2 Complete]
+
+#Filtering
+
+```{r}
+baby_names
+```
+

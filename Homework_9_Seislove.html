@@ -453,6 +453,178 @@ pre code {
 <h1>Data Import</h1>
 <pre class="r"><code>babynames &lt;- babynames::babynames</code></pre>
 </div>
+<div id="new-columns" class="section level1">
+<h1>New Columns</h1>
+<div id="percent" class="section level3">
+<h3>Percent</h3>
+<pre class="r"><code>baby_names &lt;- babynames %&gt;% mutate(percent = round(prop * 100, 2))
+
+head(baby_names) %&gt;% kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">year</th>
+<th align="left">sex</th>
+<th align="left">name</th>
+<th align="right">n</th>
+<th align="right">prop</th>
+<th align="right">percent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1880</td>
+<td align="left">F</td>
+<td align="left">Mary</td>
+<td align="right">7065</td>
+<td align="right">0.0723836</td>
+<td align="right">7.24</td>
+</tr>
+<tr class="even">
+<td align="right">1880</td>
+<td align="left">F</td>
+<td align="left">Anna</td>
+<td align="right">2604</td>
+<td align="right">0.0266790</td>
+<td align="right">2.67</td>
+</tr>
+<tr class="odd">
+<td align="right">1880</td>
+<td align="left">F</td>
+<td align="left">Emma</td>
+<td align="right">2003</td>
+<td align="right">0.0205215</td>
+<td align="right">2.05</td>
+</tr>
+<tr class="even">
+<td align="right">1880</td>
+<td align="left">F</td>
+<td align="left">Elizabeth</td>
+<td align="right">1939</td>
+<td align="right">0.0198658</td>
+<td align="right">1.99</td>
+</tr>
+<tr class="odd">
+<td align="right">1880</td>
+<td align="left">F</td>
+<td align="left">Minnie</td>
+<td align="right">1746</td>
+<td align="right">0.0178884</td>
+<td align="right">1.79</td>
+</tr>
+<tr class="even">
+<td align="right">1880</td>
+<td align="left">F</td>
+<td align="left">Margaret</td>
+<td align="right">1578</td>
+<td align="right">0.0161672</td>
+<td align="right">1.62</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+</div>
+<div id="sentence" class="section level3">
+<h3>Sentence</h3>
+<pre class="r"><code>baby_names &lt;- baby_names %&gt;% 
+  mutate(sentence = str_glue(&quot;{percent}% in {year}&quot;))
+
+head(baby_names) %&gt;% kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">year</th>
+<th align="left">sex</th>
+<th align="left">name</th>
+<th align="right">n</th>
+<th align="right">prop</th>
+<th align="right">percent</th>
+<th align="left">sentence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1880</td>
+<td align="left">F</td>
+<td align="left">Mary</td>
+<td align="right">7065</td>
+<td align="right">0.0723836</td>
+<td align="right">7.24</td>
+<td align="left">7.24% in 1880</td>
+</tr>
+<tr class="even">
+<td align="right">1880</td>
+<td align="left">F</td>
+<td align="left">Anna</td>
+<td align="right">2604</td>
+<td align="right">0.0266790</td>
+<td align="right">2.67</td>
+<td align="left">2.67% in 1880</td>
+</tr>
+<tr class="odd">
+<td align="right">1880</td>
+<td align="left">F</td>
+<td align="left">Emma</td>
+<td align="right">2003</td>
+<td align="right">0.0205215</td>
+<td align="right">2.05</td>
+<td align="left">2.05% in 1880</td>
+</tr>
+<tr class="even">
+<td align="right">1880</td>
+<td align="left">F</td>
+<td align="left">Elizabeth</td>
+<td align="right">1939</td>
+<td align="right">0.0198658</td>
+<td align="right">1.99</td>
+<td align="left">1.99% in 1880</td>
+</tr>
+<tr class="odd">
+<td align="right">1880</td>
+<td align="left">F</td>
+<td align="left">Minnie</td>
+<td align="right">1746</td>
+<td align="right">0.0178884</td>
+<td align="right">1.79</td>
+<td align="left">1.79% in 1880</td>
+</tr>
+<tr class="even">
+<td align="right">1880</td>
+<td align="left">F</td>
+<td align="left">Margaret</td>
+<td align="right">1578</td>
+<td align="right">0.0161672</td>
+<td align="right">1.62</td>
+<td align="left">1.62% in 1880</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>#Filtering</p>
+<pre class="r"><code>baby_names</code></pre>
+<pre><code>## # A tibble: 1,924,665 × 7
+##     year sex   name          n   prop percent sentence     
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;glue&gt;       
+##  1  1880 F     Mary       7065 0.0724    7.24 7.24% in 1880
+##  2  1880 F     Anna       2604 0.0267    2.67 2.67% in 1880
+##  3  1880 F     Emma       2003 0.0205    2.05 2.05% in 1880
+##  4  1880 F     Elizabeth  1939 0.0199    1.99 1.99% in 1880
+##  5  1880 F     Minnie     1746 0.0179    1.79 1.79% in 1880
+##  6  1880 F     Margaret   1578 0.0162    1.62 1.62% in 1880
+##  7  1880 F     Ida        1472 0.0151    1.51 1.51% in 1880
+##  8  1880 F     Alice      1414 0.0145    1.45 1.45% in 1880
+##  9  1880 F     Bertha     1320 0.0135    1.35 1.35% in 1880
+## 10  1880 F     Sarah      1288 0.0132    1.32 1.32% in 1880
+## # ℹ 1,924,655 more rows</code></pre>
+</div>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Problem 1 Complete<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Problem 2 Complete<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
 
 
 
