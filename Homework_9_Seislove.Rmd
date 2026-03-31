@@ -1,0 +1,23 @@
+---
+title: "Homework 9"
+author: "T.J. Seislove"
+date: "3/31/2026"
+output:
+  html_document:
+      code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(mosaic)
+library(janitor)
+library(knitr)
+```
+
+# Data Import
+
+```{r}
+babynames <- babynames::babynames
+```
+
